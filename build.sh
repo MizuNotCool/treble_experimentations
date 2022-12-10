@@ -21,7 +21,7 @@ repo init -u "$manifest_url" -b $aosp --depth=1
 if [ -d .repo/local_manifests ] ;then
 	( cd .repo/local_manifests; git fetch; git reset --hard; git checkout origin/$phh)
 else
-	git clone https://github.com/TrebleDroid/treble_manifest .repo/local_manifests -b $phh
+	git clone https://github.com/MizuNotCool/treble_manifest .repo/local_manifests -b $phh
 fi
 repo sync -c -j 1 --force-sync || repo sync -c -j1 --force-sync
 
@@ -48,8 +48,5 @@ cp patches.zip release/$rom_fp/patches-for-developers.zip
     git clone https://github.com/phhusson/vendor_vndk -b android-10.0
 )
 
-buildVariant treble_arm64_bvS-userdebug td-arm64-ab-vanilla
-( cd sas-creator; bash lite-adapter.sh 64; xz -c s.img -T0 > ../release/$rom_fp/system-td-arm64-ab-vndklite-vanilla.img.xz )
-
-buildVariant treble_a64_bvS-userdebug td-arm32_binder64-ab-vanilla
+buildVariant treble_a64_bvN-userdebug td-arm32_binder64-ab-vanilla
 ( cd sas-creator; bash lite-adapter.sh 32; xz -c s.img -T0 > ../release/$rom_fp/system-td-arm32_binder64-ab-vndklite-vanilla.img.xz )
